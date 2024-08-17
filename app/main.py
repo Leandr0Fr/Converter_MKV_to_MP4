@@ -2,6 +2,7 @@ import os
 
 import ffmpeg
 from dotenv import load_dotenv
+from colorama import Fore
 
 
 def convert_files():
@@ -13,15 +14,16 @@ def convert_files():
 
 
 def convert_to_mp4(mkv_file: str):
+    basename = os.path.basename(mkv_file)
     name, _ = os.path.splitext(mkv_file)
     output_folder = os.getenv("DIR_OUTPUT_FILES")
     out_name = os.path.join(output_folder, os.path.basename(name) + ".mp4")
     try:
-        print(f"Converting {name} to .mp4")
+        print(f"{Fore.YELLOW} Converting {basename} to .mp4")
         ffmpeg.input(mkv_file).output(out_name).run(quiet=True, overwrite_output=True)
-        print(f"Finished converting {mkv_file} to {out_name}")
+        print(f"{Fore.GREEN}Finished converting {basename} to {out_name}")
     except ffmpeg.Error as e:
-        print(f"Error occurred: {e}")
+        print(f"{Fore.RED}Error occurred: {e}")
 
 
 def main():

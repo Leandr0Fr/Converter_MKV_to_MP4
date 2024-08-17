@@ -11,6 +11,7 @@ package-mode = true
 python = "^3.12"
 ffmpeg-python = "^0.2.0"
 python-dotenv = "^1.0.1"
+colorama = "^0.4.6"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.6.1"
