@@ -35,11 +35,19 @@ def timer(th_convert_to_mp4):
 
     while th_convert_to_mp4.is_alive():
         elapsed_time = time.time() - start_time
-        print(f"Time: {elapsed_time:.2f}", end="\r")
+        hours, minutes, seconds = get_hours_minutes_seconds(elapsed_time)
+        print(f"Time: {int(hours):02}:{int(minutes):02}:{int(seconds):02}", end="\r")
         time.sleep(0.1)
 
     elapsed_time = time.time() - start_time
-    print(f"Conversion finished! elapsed time: {elapsed_time:.2f}")
+    hours, minutes, seconds = get_hours_minutes_seconds(elapsed_time)
+    print(f"Conversion finished! Elapsed time: {int(hours):02}:{int(minutes):02}:{int(seconds):02}")
+
+
+def get_hours_minutes_seconds(time: float):
+    hours, rem = divmod(time, 3600)
+    minutes, seconds = divmod(rem, 60)
+    return hours, minutes, seconds
 
 
 def main():
