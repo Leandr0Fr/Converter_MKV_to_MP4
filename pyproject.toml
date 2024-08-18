@@ -15,6 +15,7 @@ colorama = "^0.4.6"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.6.1"
+pytest = "^8.3.2"
 
 [build-system]
 requires = ["poetry-core"]
@@ -22,6 +23,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 start = 'app.main:main'
+test = 'pytest:main'
 
 [tool.ruff]
 line-length = 100
