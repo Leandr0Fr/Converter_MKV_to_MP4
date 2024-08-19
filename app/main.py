@@ -10,7 +10,11 @@ from dotenv import load_dotenv
 
 def convert_files():
     dir_input_files = os.getenv("DIR_INPUT_FILES")
-    for file in os.listdir(dir_input_files):
+    files = os.listdir(dir_input_files)
+
+    print(f" {Fore.LIGHTCYAN_EX}Number of files found: {len(files)}")
+    print("")
+    for file in files:
         dir_file = os.path.join(dir_input_files, file)
         if dir_file.lower().endswith(".mkv"):
             th_convert_to_mp4 = threading.Thread(target=convert_to_mp4, args=(dir_file.strip(),))
@@ -28,25 +32,25 @@ def convert_to_mp4(mkv_file: str):
         ffmpeg.input(mkv_file).output(out_name, crf=23, preset="superfast").run(
             quiet=True, overwrite_output=True
         )
-        print(f"{Fore.GREEN}Finished converting {basename} to {out_name}")
+        print(f" {Fore.GREEN}Converting finished {basename} to {out_name}")
     except ffmpeg.Error as e:
-        print(f"{Fore.RED}Error occurred: {e}")
+        print(f" {Fore.RED}Error occurred: {e}")
 
 
 def timer(th_convert_to_mp4):
     start_time = time.time()
-    print(f"{Fore.LIGHTCYAN_EX} Started at: {get_local_time()}")
+    print(f" {Fore.LIGHTCYAN_EX}Started at: {get_local_time()}")
 
     while th_convert_to_mp4.is_alive():
         elapsed_time = time.time() - start_time
         hours, minutes, seconds = get_hours_minutes_seconds(elapsed_time)
-        print(f"{Fore.YELLOW} Time: {int(hours):02}:{int(minutes):02}:{int(seconds):02}", end="\r")
+        print(f" {Fore.YELLOW}Time: {int(hours):02}:{int(minutes):02}:{int(seconds):02}", end="\r")
         time.sleep(0.1)
 
     elapsed_time = time.time() - start_time
     hours, minutes, seconds = get_hours_minutes_seconds(elapsed_time)
     print(
-        f"{Fore.GREEN}Conversion finished! Elapsed time: {int(hours):02}:{int(minutes):02}:{int(seconds):02}"
+        f" {Fore.GREEN}Conversion finished! Elapsed time: {int(hours):02}:{int(minutes):02}:{int(seconds):02}"
     )
     print(f"{Fore.LIGHTCYAN_EX} Finished at: {get_local_time()}")
     print("")
