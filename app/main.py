@@ -49,6 +49,7 @@ def timer(th_convert_to_mp4):
         f"{Fore.GREEN}Conversion finished! Elapsed time: {int(hours):02}:{int(minutes):02}:{int(seconds):02}"
     )
     print(f"{Fore.LIGHTCYAN_EX} Finished at: {get_local_time()}")
+    print("")
 
 
 def get_hours_minutes_seconds(time: float):
