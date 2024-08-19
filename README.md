@@ -21,3 +21,9 @@ Para el funcionamiento del script debe cambiar el nombre del archivo `.env.examp
 ## Iniciar Script
 
 Tras la configuración e instalación, para correr el script ejecute `poetry run start`
+
+### Ejemplos
+
+![Inicio de script](https://lh3.google.com/u/0/d/10juMvuRoR-_MX-JUX4FMVWlDMlY0OEFa=w1365-h632-iv1)
+
+![Script finalizado](https://lh3.google.com/u/0/d/1Ldmzba5yOzWgJOvcgrrACjO0HexwVNXd=w1365-h632-iv1)
