@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "app"
-version = "0.1.0"
+version = "0.2.0"
 description = ""
 authors = ["Leandro Franco <leandro00fr@gmail.com>"]
 license = "MIT"
@@ -27,6 +27,7 @@ test = 'pytest:main'
 
 [tool.ruff]
 line-length = 110
+ignore = ["F403", "F405"]
 
 select = [
   "E",

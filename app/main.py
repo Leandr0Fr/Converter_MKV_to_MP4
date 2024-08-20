@@ -7,13 +7,14 @@ import ffmpeg
 from colorama import Fore
 from dotenv import load_dotenv
 
+from .messages.prints import *
+
 
 def convert_files():
     dir_input_files = os.getenv("DIR_INPUT_FILES")
     files = os.listdir(dir_input_files)
 
-    print(f" {Fore.LIGHTCYAN_EX}Number of files found: {len(files)}")
-    print("")
+    print_num_files_found(len(files))
     for file in files:
         dir_file = os.path.join(dir_input_files, file)
         if dir_file.lower().endswith(".mkv"):
@@ -28,32 +29,29 @@ def convert_to_mp4(mkv_file: str):
     output_folder = os.getenv("DIR_OUTPUT_FILES")
     out_name = os.path.join(output_folder, os.path.basename(name) + ".mp4")
     try:
-        print(f"{Fore.YELLOW} Converting {basename} to .mp4")
+        print_conversion_start(basename)
         ffmpeg.input(mkv_file).output(out_name, crf=23, preset="superfast").run(
             quiet=True, overwrite_output=True
         )
-        print(f" {Fore.GREEN}Converting finished {basename} to {out_name}")
+        print_conversion_finished(basename, out_name)
     except ffmpeg.Error as e:
-        print(f" {Fore.RED}Error occurred: {e}")
+        print_error_occurred(e)
 
 
 def timer(th_convert_to_mp4):
     start_time = time.time()
-    print(f" {Fore.LIGHTCYAN_EX}Started at: {get_local_time()}")
+    print_timer_start(get_local_time())
 
     while th_convert_to_mp4.is_alive():
         elapsed_time = time.time() - start_time
         hours, minutes, seconds = get_hours_minutes_seconds(elapsed_time)
-        print(f" {Fore.YELLOW}Time: {int(hours):02}:{int(minutes):02}:{int(seconds):02}", end="\r")
+        print_elapsed_time(hours, minutes, seconds)
         time.sleep(0.1)
 
     elapsed_time = time.time() - start_time
     hours, minutes, seconds = get_hours_minutes_seconds(elapsed_time)
-    print(
-        f" {Fore.GREEN}Conversion finished! Elapsed time: {int(hours):02}:{int(minutes):02}:{int(seconds):02}"
-    )
-    print(f"{Fore.LIGHTCYAN_EX} Finished at: {get_local_time()}")
-    print("")
+    print_conversion_finished_time(hours, minutes, seconds)
+    print_timer_end(get_local_time())
 
 
 def get_hours_minutes_seconds(time: float):
@@ -62,7 +60,7 @@ def get_hours_minutes_seconds(time: float):
     return hours, minutes, seconds
 
 
-def get_local_time():
+def get_local_time() -> str:
     local_time = datetime.now()
     return local_time.strftime("%H:%M:%S")
 
