@@ -4,7 +4,6 @@ import time
 from datetime import datetime
 
 import ffmpeg
-from colorama import Fore
 from dotenv import load_dotenv
 
 from .messages.prints import *
