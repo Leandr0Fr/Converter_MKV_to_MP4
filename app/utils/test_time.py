@@ -1,7 +1,7 @@
-from .main import get_hours_minutes_seconds
+from .time import get_hours_minutes_seconds
 
 
-class TestMain:
+class TestTime:
     def test_get_houts_minutes_seconds_0_seconds(self):
         elapsed_time = 0.0
         hours, minute, seconds = get_hours_minutes_seconds(elapsed_time)
