@@ -1,16 +1,16 @@
 def print_tittle():
-    return """
+    print("""
  _    _  _____ _     _____ _     _____ 
 | |  | ||  _  | |   |  _  | |   |  _  |
 | |  | || | | | |   | | | | |   | | | |
 | |/\| || | | | |   | | | | |   | | | |
 \  /\  /\ \_/ / |___\ \_/ / |___\ \_/ /
  \/  \/  \___/\_____/\___/\_____/\___/ 
-"""
+""")
 
 
 def print_options_menu():
-    return """
+    print("""
 +-------------------------------------+
 |        SELECCIONE SU OPCIÓN         |
 +-------------------------------------+
@@ -20,11 +20,11 @@ def print_options_menu():
 |  4. Ver archivos                    |
 |  0. Salir                           |
 +-------------------------------------+
-"""
+""")
 
 
 def print_options_converter():
-    return """
+    print("""
 +-------------------------------------+
 |        SELECCIONE SU OPCIÓN         |
 +-------------------------------------+
@@ -37,11 +37,11 @@ def print_options_converter():
 |  7. Convertir a .WEBM               |
 |  0. Menú principal                  |
 +-------------------------------------+
-"""
+""")
 
 
 def print_options_audio():
-    return """
+    print("""
 +-------------------------------------+
 |        SELECCIONE SU OPCIÓN         |
 +-------------------------------------+
@@ -52,11 +52,11 @@ def print_options_audio():
 |  5. Extraer a .OGG                  |
 |  0. Menú principal                  |
 +-------------------------------------+
-"""
+""")
 
 
 def print_options_reduce():
-    return """
+    print("""
 +-------------------------------------+
 |        SELECCIONE SU OPCIÓN         |
 +-------------------------------------+
@@ -66,24 +66,24 @@ def print_options_reduce():
 |  4. Comprensión baja                |
 |  0. Menú principal                  |
 +-------------------------------------+
-"""
+""")
 
 
 def print_confirm():
-    return """
+    print("""
 +-------------------------------------+
 |        SELECCIONE SU OPCIÓN         |
 +-------------------------------------+
 |        ¿Está seguro? SI/NO          |
 +-------------------------------------+
-"""
+""")
 
 
 def print_error():
-    return """
+    print("""
 +-------------------------------------+
 |           INGRESO ERRONEO           |
 +-------------------------------------+
-|        La opción no existe          |          |
+|        La opción no existe          |
 +-------------------------------------+
-"""
+""")
