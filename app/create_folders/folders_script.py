@@ -1,13 +1,10 @@
 import os
-from pathlib import Path
 
-from .constants import *
-
-path_videos = Path(os.path.expanduser("~\\Videos"))
+from ..constants.folders_path import *
 
 
 def dir_folders() -> list[str]:
-    return [p.name for p in path_videos.iterdir() if p.is_dir()]
+    return [p.name for p in VIDEOS_PATH.iterdir() if p.is_dir()]
 
 
 def exists_basics_folders(folders: list[str]) -> tuple[bool, bool]:
@@ -19,14 +16,14 @@ def create_folders() -> None:
     exists_input, exists_output = exists_basics_folders(folders)
 
     if not exists_input:
-        path_complete = os.path.join(path_videos, INPUT_FOLDER)
+        path_complete = os.path.join(VIDEOS_PATH, INPUT_FOLDER)
         try:
             os.makedirs(path_complete, exist_ok=True)
         except Exception as e:
             print(e)
 
     if not exists_output:
-        path_complete = os.path.join(path_videos, OUTPUT_FOLDER)
+        path_complete = os.path.join(VIDEOS_PATH, OUTPUT_FOLDER)
         try:
             os.makedirs(path_complete, exist_ok=True)
         except Exception as e:

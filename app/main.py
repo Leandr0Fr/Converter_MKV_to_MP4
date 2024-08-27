@@ -1,21 +1,23 @@
 import os
 import threading
 import time
+from pathlib import Path
 
 import ffmpeg
-from dotenv import load_dotenv
 
+from .constants.folders_path import INPUT_PATH, OUTPUT_PATH
 from .messages.prints import *
 from .utils.time import get_hours_minutes_seconds, get_local_time
 
+path_videos = Path(os.path.expanduser("~\\Videos"))
+
 
 def convert_files():
-    dir_input_files = os.getenv("DIR_INPUT_FILES")
-    files = os.listdir(dir_input_files)
+    files = os.listdir(INPUT_PATH)
 
     print_num_files_found(len(files))
     for file in files:
-        dir_file = os.path.join(dir_input_files, file)
+        dir_file = os.path.join(INPUT_PATH, file)
         if dir_file.lower().endswith(".mkv"):
             th_convert_to_mp4 = threading.Thread(target=convert_to_mp4, args=(dir_file.strip(),))
             th_convert_to_mp4.start()
@@ -25,8 +27,7 @@ def convert_files():
 def convert_to_mp4(mkv_file: str):
     basename = os.path.basename(mkv_file)
     name, _ = os.path.splitext(mkv_file)
-    output_folder = os.getenv("DIR_OUTPUT_FILES")
-    out_name = os.path.join(output_folder, os.path.basename(name) + ".mp4")
+    out_name = os.path.join(OUTPUT_PATH, os.path.basename(name) + ".mp4")
     try:
         print_conversion_start(basename)
         ffmpeg.input(mkv_file).output(out_name, crf=23, preset="superfast").run(
@@ -54,7 +55,6 @@ def timer(th_convert_to_mp4):
 
 
 def main():
-    load_dotenv()
     convert_files()
 
 
