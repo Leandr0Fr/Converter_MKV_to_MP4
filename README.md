@@ -3,7 +3,7 @@
 ## Descripción
 Script en Python para convertir archivos .MKV a .MP4 utilizando FFMPEG.
 
-## Instalación de FFMPEG
+## Instalación
 Es necesario contar con [FFMPEG](https://ffmpeg.org/download.html) en el sistema. En Windows se debe agregar en el PATH.
 
 Siga las intrucciones de la página oficial.
